@@ -7,6 +7,7 @@
 , boost178
 , bzip2
 , CoinMP
+, doxygen
 , eigen
 , glpk
 , kissfft
@@ -49,6 +50,7 @@ stdenv.mkDerivation rec {
 
   nativeBuildInputs = [
     cmake
+    doxygen
     wrapQtAppsHook
   ];
 
