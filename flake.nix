@@ -59,6 +59,9 @@
         let pkgs = nixpkgsFor.${system};
         in {
           default = pkgs.mkShell {
+            dontFixCmake = 1;
+            cmakeFlags = self.packages.${system}.openms.cmakeFlags;
+
             inputsFrom = builtins.attrValues self.packages.${system};
 
             buildInputs = [
@@ -68,8 +71,6 @@
               ]))
             ];
           };
-
-          openms = self.packages.${system}.openms;
         });
     };
 }
