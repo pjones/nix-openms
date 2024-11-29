@@ -58,7 +58,9 @@
       devShells = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in {
-          default = pkgs.mkShell {
+          default = self.devShells.${system}.openms;
+
+          openms = pkgs.mkShell {
             dontFixCmake = 1;
             cmakeFlags = self.packages.${system}.openms.cmakeFlags;
 
@@ -69,6 +71,13 @@
                 black
                 pyopenms
               ]))
+            ];
+          };
+
+          quantms = pkgs.mkShell {
+            buildInputs = [
+              pkgs.nextflow
+              pkgs.apptainer
             ];
           };
         });
