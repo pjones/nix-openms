@@ -53,6 +53,14 @@
               enablePython = true;
             });
           };
+
+          buildenv = pkgs.callPackage pkgs/buildenv.nix {
+            openms = self.packages.${system}.openms;
+          };
+
+          dockerimg = pkgs.callPackage pkgs/dockerimg.nix {
+            openms = self.packages.${system}.openms;
+          };
         });
 
       devShells = forAllSystems (system:
