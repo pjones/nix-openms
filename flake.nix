@@ -25,6 +25,7 @@
         });
     in
     {
+      ##########################################################################
       packages = forAllSystems (system:
         let
           pkgs = nixpkgsFor.${system};
@@ -40,6 +41,14 @@
           inherit python3;
           default = self.packages.${system}.openms;
 
+          buildenv = pkgs.callPackage pkgs/buildenv.nix {
+            openms = self.packages.${system}.openms;
+          };
+
+          dockerimg = pkgs.callPackage pkgs/dockerimg.nix {
+            openms = self.packages.${system}.openms;
+          };
+
           openms = pkgs.callPackage pkgs/openms.nix {
             inherit python3;
             openmp = pkgs.llvmPackages_12.openmp;
@@ -54,15 +63,22 @@
             });
           };
 
-          buildenv = pkgs.callPackage pkgs/buildenv.nix {
-            openms = self.packages.${system}.openms;
-          };
+          rawfilereader = pkgs.callPackage pkgs/thermoraw/RawFileReader.nix { };
 
-          dockerimg = pkgs.callPackage pkgs/dockerimg.nix {
-            openms = self.packages.${system}.openms;
+          thermorawfp = pkgs.callPackage pkgs/thermoraw/ThermoRawFileParser.nix {
+            RawFileReader = self.packages.${system}.rawfilereader;
           };
         });
 
+      ##########################################################################
+      apps = forAllSystems (system: {
+        thermorawfp = {
+          type = "app";
+          program = "${self.packages.${system}.thermorawfp}/bin/ThermoRawFileParser";
+        };
+      });
+
+      ##########################################################################
       devShells = forAllSystems (system:
         let pkgs = nixpkgsFor.${system};
         in {
