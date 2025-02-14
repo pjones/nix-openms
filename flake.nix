@@ -45,6 +45,8 @@
             openms = self.packages.${system}.openms;
           };
 
+          diann-academia = pkgs.callPackage pkgs/diann-academia.nix { };
+
           dockerimg = pkgs.callPackage pkgs/dockerimg.nix {
             openms = self.packages.${system}.openms;
           };
