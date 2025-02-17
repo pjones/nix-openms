@@ -48,6 +48,9 @@ stdenv.mkDerivation rec {
     hash = "sha256-+9d1r7dn43HvM2WrEYg3GLyVAHmibGVmZlIh1alEpTc=";
   };
 
+  # doCheck = true;
+  # checkTarget = "test";
+
   nativeBuildInputs = [
     cmake
     doxygen
