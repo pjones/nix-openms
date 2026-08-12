@@ -1,5 +1,25 @@
 #+title: Proteomics.nix
 
+#+begin_html
+<p align="center">
+  <a href="https://github.com/pjones/proteomics.nix/actions/workflows/test.yml">
+    <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/pjones/proteomics.nix/test.yml?&style=for-the-badge">
+  </a>
+
+  <a href="https://github.com/pjones/proteomics.nix/actions/workflows/nightly.yml">
+    <img alt="OpenMS Nightly" src="https://img.shields.io/github/actions/workflow/status/pjones/proteomics.nix/nightly.yml?style=for-the-badge&label=OpenMS%20Nightly">
+  </a>
+
+  <a href="https://github.com/pjones/proteomics.nix/blob/trunk/LICENSE">
+    <img alt="License" src="https://img.shields.io/github/license/pjones/proteomics.nix?style=for-the-badge&color=blue">
+  </a>
+
+  <a href="https://github.com/pjones/proteomics.nix/releases">
+    <img alt="Release" src="https://img.shields.io/github/v/release/pjones/proteomics.nix?style=for-the-badge">
+  </a>
+</p>
+#+end_html
+
 A [[https://nixos.org/][Nix Flake]] for easy access to proteomics data analysis tools such as
 [[https://openms.de/][OpenMS]].
 
@@ -7,7 +27,19 @@ A [[https://nixos.org/][Nix Flake]] for easy access to proteomics data analysis 
 
   1. [[https://nixos.org/download/#download-nix][Install Nix]]
 
-  2. Install the desired package:
+  2. Enable the binary cache (optional)
+
+     This will reduce the number of packages you have to build from
+     source.  Ideally you'll be able to get everything from the cache.
+
+     #+begin_src sh
+       nix \
+         --extra-experimental-features nix-command \
+         --extra-experimental-features flakes \
+         run nixpkgs#cachix use proteomics
+     #+end_src
+
+  3. Install the desired package:
 
      Note: Replace =PACKAGE= with the name of the desired package.  See
      below for a list of available packages.
