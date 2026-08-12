@@ -75,6 +75,29 @@
           thermorawfp = pkgs.callPackage pkgs/thermoraw/ThermoRawFileParser.nix {
             RawFileReader = self.packages.${system}.rawfilereader;
           };
+
+          # Docker container will all tools installed:
+          container = pkgs.dockerTools.buildLayeredImage {
+            name = "proteomics.nix";
+            tag = "latest";
+
+            contents = [
+              pkgs.bashInteractive
+              pkgs.coreutils
+            ]
+            ++ (with self.packages.${system}; [
+              comet
+              diann-academia
+              flashlfq
+              metamorpheus
+              msgfplus
+              openms
+              percolator
+              python3
+              rawfilereader
+              thermorawfp
+            ]);
+          };
         }
       );
 

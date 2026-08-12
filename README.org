@@ -20,8 +20,8 @@
 </p>
 #+end_html
 
-A [[https://nixos.org/][Nix Flake]] for easy access to proteomics data analysis tools such as
-[[https://openms.de/][OpenMS]].
+A [[https://nixos.org/][Nix Flake]] (and Docker container) for easy access to proteomics data
+analysis tools such as [[https://openms.de/][OpenMS]].
 
 * Installing Packages
 
