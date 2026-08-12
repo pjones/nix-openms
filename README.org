@@ -20,10 +20,30 @@
 </p>
 #+end_html
 
-A [[https://nixos.org/][Nix Flake]] (and Docker container) for easy access to proteomics data
+A [[https://nixos.org/][Nix Flake]] (and Podman container) for easy access to proteomics data
 analysis tools such as [[https://openms.de/][OpenMS]].
 
-* Installing Packages
+* Using the Podman/Docker Container
+
+  NOTE: If you are using Docker instead of Podman simply replace the
+  word =podman= with =docker= in the following instructions.
+
+  1. Pull the container from GitHub:
+
+     #+begin_src sh
+       podman pull ghcr.io/pjones/proteomics.nix:latest
+     #+end_src
+
+  2. Run one of the tools in the container:
+
+     For example, execute the =ProteomicsLFQ= tool from the OpenMS
+     project and request option help (via the =-h= option).
+
+     #+begin_src sh
+       podman run --rm -it -v "$(pwd):/mnt" -w /mnt proteomics.nix ProteomicsLFQ -h
+     #+end_src
+
+* Installing Packages via Nix
 
   1. [[https://nixos.org/download/#download-nix][Install Nix]]
 

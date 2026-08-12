@@ -1,4 +1,4 @@
-name: "Build Proteomics.nix Container"
+name: "Build Container"
 
 on:
   pull_request:
