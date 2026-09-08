@@ -20,7 +20,10 @@
         nixpkgs.lib.genAttrs supportedSystems (
           system:
           let
-            pkgs = import nixpkgs { inherit system; };
+            pkgs = import nixpkgs {
+              inherit system;
+              config.allowUnfree = true;
+            };
           in
           f pkgs system
         );
@@ -37,6 +40,8 @@
           diann-academia = pkgs.callPackage pkgs/diann-academia.nix { };
 
           flashlfq = pkgs.callPackage pkgs/flashlfq { };
+
+          maxquant = pkgs.callPackage pkgs/maxquant.nix { };
 
           metamorpheus = pkgs.callPackage pkgs/metamorpheus { };
 
@@ -102,7 +107,9 @@
       );
 
       ##########################################################################
-      # Build and check everything:
-      checks = each (pkgs: system: self.packages.${system});
+      # Build and check all packages that we have the source for:
+      checks = each (
+        pkgs: system: pkgs.lib.filterAttrs (_: pkg: !(pkg.passthru.manual or false)) self.packages.${system}
+      );
     };
 }

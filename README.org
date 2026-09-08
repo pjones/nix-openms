@@ -79,6 +79,8 @@ analysis tools such as [[https://openms.de/][OpenMS]].
 
   - [[https://github.com/smith-chem-wisc/FlashLFQ][FlashLFQ]] (=flashlfq=)
 
+  - [[https://maxquant.org/][MaxQuant]] (=maxquant=) [fn:1] (installed as =MaxQuantCmd=)
+
   - [[https://github.com/smith-chem-wisc/MetaMorpheus][MetaMorpheus]] (=metamorpheus=)
 
   - [[http://percolator.ms/][Percolator]] (=percolator=)
@@ -90,3 +92,9 @@ analysis tools such as [[https://openms.de/][OpenMS]].
   - [[https://github.com/thermofisherlsms/RawFileReader][RawFileReader]] (=rawfilereader=)
 
   - [[https://github.com/compomics/ThermoRawFileParser][ThermoRawFileParser]] (=thermorawfp=)
+
+* Footnotes
+
+[fn:1] This is a non-free proprietary software package.  To use it you
+must manually download the software from the vendor.  Attempting to
+install the Nix package will provide the necessary instructions.
